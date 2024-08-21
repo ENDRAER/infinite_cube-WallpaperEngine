@@ -1,0 +1,32 @@
+{
+	"passes" : 
+	[
+		{
+			"alphawriting" : "default",
+			"blending" : "normal",
+			"combos" : 
+			{
+				"FOG" : 1,
+				"LIGHTING" : 1,
+				"REFLECTION" : 0,
+				"RIMLIGHTING" : 0,
+				"SHADINGGRADIENT" : 1,
+				"TINTMASKALPHA" : 0
+			},
+			"constantshadervalues" : 
+			{
+				"Alpha" : 1,
+				"Color" : "1.00000 1.00000 1.00000",
+				"alpha" : 1.0,
+				"color" : "0.69020 0.69020 0.69020",
+				"metallic" : 0,
+				"roughness" : 0.7
+			},
+			"cullmode" : "normal",
+			"depthtest" : "enabled",
+			"depthwrite" : "enabled",
+			"shader" : "generic4",
+			"textures" : [ null ]
+		}
+	]
+}

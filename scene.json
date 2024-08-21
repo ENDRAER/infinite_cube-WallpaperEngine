@@ -1,0 +1,832 @@
+{
+	"camera" : 
+	{
+		"center" : "-0.15223 5.64825 -2.52928",
+		"eye" : "0.32344 6.27629 -3.14516",
+		"up" : "0.00000 1.00000 0.00000"
+	},
+	"general" : 
+	{
+		"ambientcolor" : "0.30000 0.30000 0.30000",
+		"bloom" : true,
+		"bloomhdrfeather" : 0.1,
+		"bloomhdriterations" : 8,
+		"bloomhdrscatter" : 1.619,
+		"bloomhdrstrength" : 2.0,
+		"bloomhdrthreshold" : 1.0,
+		"bloomstrength" : 0.0,
+		"bloomthreshold" : 0.0,
+		"bloomtint" : "1.00000 0.00000 0.00000",
+		"camerafade" : true,
+		"cameraparallax" : false,
+		"cameraparallaxamount" : 0.5,
+		"cameraparallaxdelay" : 0.1,
+		"cameraparallaxmouseinfluence" : 0.5,
+		"camerapreview" : true,
+		"camerashake" : false,
+		"camerashakeamplitude" : 0.5,
+		"camerashakeroughness" : 1.0,
+		"camerashakespeed" : 3.0,
+		"clearcolor" : 
+		{
+			"user" : "backgroundcolor",
+			"value" : "0.10588 0.12157 0.20784"
+		},
+		"clearenabled" : true,
+		"farz" : 30000.0,
+		"fov" : 102.61,
+		"hdr" : false,
+		"lightconfig" : 
+		{
+			"directional" : 2
+		},
+		"nearz" : 0.0099999998,
+		"orthogonalprojection" : null,
+		"skylightcolor" : "0.30000 0.30000 0.30000",
+		"transparentsorting" : true,
+		"zoom" : 1.0
+	},
+	"objects" : 
+	[
+		{
+			"angles" : "-2.19456 0.11722 -2.00405",
+			"cascadedistance0" : 3.0,
+			"cascadedistance1" : 10.0,
+			"cascadedistance2" : 100.0,
+			"castshadow" : false,
+			"color" : "1.00000 1.00000 1.00000",
+			"density" : 2.0,
+			"exponent" : 2.0,
+			"id" : 24,
+			"intensity" : 1.4,
+			"light" : "ldirectional",
+			"name" : "",
+			"origin" : "4.00000 4.00000 -4.00000",
+			"parallaxDepth" : "0.00000 0.00000",
+			"radius" : 5.0,
+			"volumetricsexponent" : 1.0
+		},
+		{
+			"angles" : "0.25053 0.17313 1.20582",
+			"cascadedistance0" : 3.0,
+			"cascadedistance1" : 10.0,
+			"cascadedistance2" : 100.0,
+			"castshadow" : false,
+			"color" : "1.00000 1.00000 1.00000",
+			"density" : 2.0,
+			"exponent" : 2.0,
+			"id" : 98,
+			"intensity" : 0.2,
+			"light" : "ldirectional",
+			"name" : "",
+			"origin" : "4.00000 4.00000 -4.00000",
+			"parallaxDepth" : "0.00000 0.00000",
+			"radius" : 5.0,
+			"volumetricsexponent" : 1.0
+		},
+		{
+			"angles" : "-0.39270 0.78540 0.00000",
+			"camera" : "default",
+			"fov" : 
+			{
+				"user" : "zoom",
+				"value" : 50.0
+			},
+			"id" : 14,
+			"name" : "",
+			"origin" : "15.00000 8.50000 15.00000",
+			"path" : "scripts/camera_paths_14.json",
+			"queuemode" : "random",
+			"visible" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar timerTime = 250;\nvar timer = 0;\nvar step = 0;\nvar dynamicSpeed = 0.5;\n\nexport function init(value) \n{\n\tshared = 0;\n\treturn value;\n}\n\nexport function update(value) \n{\n\ttimer += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\tif(timer >=timerTime)\n\t{\n\t\tdynamicSpeed = 0.5;\n\t\ttimer=0;\n\t\tstep++;\n\t\tif(step == 1 || 4)\n\t\t\ttimer+=timerTime/4;\n\t\tif(step == 6)\n\t\t\tstep = 0;\n\t\tshared = step;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : true
+			},
+			"zoom" : 1.0
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 0,\n\t\tmin: 0,\n\t\tmax: 0,\n\t\tinteger: false\n\t})\n\t.finish();\nexport function update(value) \n{\n\tvalue.y += scriptProperties.GlobalSpeed * engine.frametime;\n\treturn value;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "spinningspeed",
+						"value" : 
+						{
+							"user" : "globalspeed",
+							"value" : 0
+						}
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 35,
+			"name" : "Center2"
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\tcase 1:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.y > 0)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z < -180)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z < 90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.y < -90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = -90;\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 -1.57080 -1.57080"
+			},
+			"id" : 42,
+			"model" : "models/Cube/Cube.mdl",
+			"name" : "Cube",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 135;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep(45);\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleCos(curentAngle, 1.06066017) + 0.25;\n\t\t\tvalue.y = angleSin(-curentAngle+45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.z = (angleCos(curentAngle, 0.5) + 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle <= 0)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.z = 3;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tonCompleteStep(90, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleSin(curentAngle, 1.4142135624*1.4142135624)+1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle < 0)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 -1.00000 1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//1-11\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x > 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 1
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 71,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "0.00000 0.75000 -0.75000",
+			"parent" : 42
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\tcase 1:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.y < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z > 180)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z > 270)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.y > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 90;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 1.57080 1.57080"
+			},
+			"id" : 77,
+			"model" : "models/CubeInvert/CubeInvert.mdl",
+			"name" : "CubeInvert",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 135;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep(45,0);\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tonCompleteStep(225, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleCos(curentAngle, 1.06066017) - 0.25;\n\t\t\tvalue.y = angleSin(curentAngle-45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.z = (angleCos(curentAngle, 0.5) + 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle <= 0)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.z = 3;\n\t\t\t\tonCompleteStep(135, 0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tonCompleteStep(90, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleSin(curentAngle, 1.4142135624*1.4142135624)+1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle < 0)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 -1.00000 1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 1:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 0.00000 1.57080"
+			},
+			"id" : 74,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "-0.75000 0.00000 0.75000",
+			"parent" : 77
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.y < -180)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = -180;\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z < -180)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = -180;\n\t\t\t\tvalue.z = -180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = -180;\n\t\t\t\tvalue.z = -180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z < -270)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = -180;\n\t\t\t\tvalue.z = -270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.y > -90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = -90;\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 -1.57080 -1.57080"
+			},
+			"id" : 70,
+			"model" : "models/CubeInvert/CubeInvert.mdl",
+			"name" : "CubeInvert",
+			"origin" : 
+			{
+				"script" : "//11-1\n\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 135;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep(135,0);\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tonCompleteStep(45,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleCos(curentAngle, 1.06066017) + 0.25;\n\t\t\tvalue.y = angleSin(-curentAngle+45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 45);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.z = (angleCos(curentAngle, 0.5) - 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle >= 180)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.z = -3;\n\t\t\t\tonCompleteStep(45,0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tonCompleteStep(-90,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleSin(curentAngle, 1.4142135624*1.4142135624)-1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle > 0)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 -1.00000 -1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//1-11\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 1:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 0.00000 1.57080"
+			},
+			"id" : 69,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "-0.75000 0.00000 0.75000",
+			"parent" : 70
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.y < 0)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z > 0)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x < -270)\n\t\t\t{\n\t\t\t\tvalue.x = -270;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z > 90)\n\t\t\t{\n\t\t\t\tvalue.x = -270;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.y > 90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tvalue.y = 90;\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.57080 1.57080 -1.57080"
+			},
+			"id" : 40,
+			"model" : "models/Cube/Cube.mdl",
+			"name" : "Cube",
+			"origin" : 
+			{
+				"script" : "//11-1\n\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 135;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep(135,0);\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tonCompleteStep(225,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleCos(curentAngle, 1.06066017) - 0.25;\n\t\t\tvalue.y = angleSin(curentAngle-45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 45);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.z = (angleCos(curentAngle, 0.5) - 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle >= 180)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.z = -3;\n\t\t\t\tonCompleteStep(135,0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tonCompleteStep(-90,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleSin(curentAngle, 1.4142135624*1.4142135624)-1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle > 0)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 -1.00000 -1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//1-11\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x > 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 97,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "0.00000 0.75000 -0.75000",
+			"parent" : 40
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = -90;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.y < -180)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = -180;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = -180;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z < -90)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = -180;\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.y > -90)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = -90;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 1
+					}
+				},
+				"value" : "3.14159 -1.57080 1.57080"
+			},
+			"id" : 65,
+			"model" : "models/CubeInvert/CubeInvert.mdl",
+			"name" : "CubeInvert",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 135;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.x = (angleCos(curentAngle, 0.5) + 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle <= 0)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.x = 3;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tonCompleteStep(90, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleSin(curentAngle, 1.4142135624*1.4142135624)+1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep(45, 0);\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleCos(curentAngle, 1.06066017) + 0.25;\n\t\t\tvalue.y = angleSin(-curentAngle+45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 1.00000 1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 1.57080"
+			},
+			"id" : 73,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "-0.75000 0.00000 0.75000",
+			"parent" : 65
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 90;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.y < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z > 180)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z > 270)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.y > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 90;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 1.57080 3.14159"
+			},
+			"id" : 57,
+			"model" : "models/Cube/Cube.mdl",
+			"name" : "Cube",
+			"origin" : 
+			{
+				"script" : "//-111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 45;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.x = (angleCos(curentAngle, 0.5) - 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle >= 180)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.x = -3;\n\t\t\t\tonCompleteStep(45,0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tonCompleteStep(-90,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleSin(curentAngle, 1.4142135624*1.4142135624)-1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle > 0)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep(135, 0);\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleCos(curentAngle, 1.06066017) + 0.25;\n\t\t\tvalue.y = angleSin(-curentAngle+45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = 1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 45);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 1.00000 1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//1-11\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x > 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.57080 0.00000 0.00000"
+			},
+			"id" : 75,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "0.00000 0.75000 -0.75000",
+			"parent" : 57
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z < -180)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = -180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x > 180)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = -180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z < -270)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = -270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z < -360)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = -360;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 0.00000 0.00000"
+			},
+			"id" : 59,
+			"model" : "models/Cube/Cube.mdl",
+			"name" : "Cube",
+			"origin" : 
+			{
+				"script" : "//11-1\n\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 135;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.x = (angleCos(curentAngle, 0.5) + 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle <= 0)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.x = 3;\n\t\t\t\tonCompleteStep(135,0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tonCompleteStep(90,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleSin(curentAngle, 1.4142135624*1.4142135624)+1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep(45, 0);\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) + 0.25;\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = 1;\n\t\t\t\tonCompleteStep(225,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleCos(curentAngle, 1.06066017) - 0.25;\n\t\t\tvalue.y = angleSin(curentAngle-45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 135);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 1.00000 -1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//1-11\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 0.00000 -1.57080"
+			},
+			"id" : 68,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "0.75000 0.00000 0.75000",
+			"parent" : 59
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//111\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z > 180)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x > 180)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.z > 270)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.z > 360)\n\t\t\t{\n\t\t\t\tvalue.x = 180;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 360;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x < 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.57080 0.00000 0.00000"
+			},
+			"id" : 72,
+			"model" : "models/CubeInvert/CubeInvert.mdl",
+			"name" : "CubeInvert",
+			"origin" : 
+			{
+				"script" : "//-11-1\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 90;\nvar curentSecondAngle = 45;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tcurentSecondAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.y = (angleSin(curentAngle, 0.5) - 0.25) + angleSin(curentSecondAngle, 1.06066017);\n\t\t\tvalue.x = (angleCos(curentAngle, 0.5) - 1.75) + angleCos(curentSecondAngle, 1.06066017);\n\t\t\tif(curentAngle >= 180)\n\t\t\t{\n\t\t\t\tvalue.y = -1;\n\t\t\t\tvalue.x = -3;\n\t\t\t\tonCompleteStep(135,0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.z = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tonCompleteStep(-90,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.x = angleSin(curentAngle, 1.4142135624*1.4142135624)-1+angleSin(curentAngle*2, 0.25);\n\t\t\tif(curentAngle > 0)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tvalue.y = -1;\n\t\t\t\tonCompleteStep(45, 0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tonCompleteStep(135, 0);\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tvalue.x = (angleCos(curentAngle, 1.06066017)) - 0.25;\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.x = -1;\n\t\t\t\tonCompleteStep(225,0);\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tvalue.z = angleCos(curentAngle, 1.06066017) - 0.25;\n\t\t\tvalue.y = angleSin(curentAngle-45, 1.4142135624*1.4142135624)-1;\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.z = -1;\n\t\t\t\tvalue.y = 1;\n\t\t\t\tonCompleteStep(90, 45);\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, radius)\n{\n\treturn (Math.cos(angle * (Math.PI / 180)) * radius);\n}\nfunction angleSin(angle, radius)\n{\n\treturn (Math.sin(angle * (Math.PI / 180)) * radius);\n}\n\nfunction onCompleteStep(newAngle, newSecondAngle)\n{\n\tcurentAngle = newAngle;\n\tcurentSecondAngle = newSecondAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 1.00000 -1.00000"
+			},
+			"parent" : 35
+		},
+		{
+			"angles" : 
+			{
+				"script" : "//1-11\n'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\tcase 1:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed) * engine.frametime;\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed) / 2 * engine.frametime;\n\t\t\tif(value.x > 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 95,
+			"model" : "models/Scrap5/Scrap5.mdl",
+			"name" : "Scrap5",
+			"origin" : "0.00000 0.75000 -0.75000",
+			"parent" : 72
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 0,\n\t\tmin: 0,\n\t\tmax: 0,\n\t\tinteger: false\n\t})\n\t.finish();\nexport function update(value) \n{\n\tvalue.y += scriptProperties.GlobalSpeed;\n\treturn value;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "spinningspeed",
+						"value" : 
+						{
+							"user" : "globalspeed",
+							"value" : 0
+						}
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 55,
+			"name" : "Center",
+			"visible" : false
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -180)\n\t\t\t{\n\t\t\t\tvalue.z = -180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -270)\n\t\t\t{\n\t\t\t\tvalue.z = -270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tdynamicSpeed=0.5;\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -360)\n\t\t\t{\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 45,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube RBU",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 135;\nvar dynamicSpeed = 0.5;\n\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle) + 2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-45) + 2;\n\t\t\t\tvalue.y = angleSin(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-45);\n\t\t\t\tonCompleteStep(0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle, 1.414213562345) +1;\n\t\t\tvalue.x += angleCos(curentAngle + 45) - 1;\n\t\t\tif(curentAngle < -90)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-90)+1;\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.z = angleCos(-45);\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 1.00000 1.00000"
+			},
+			"parent" : 55
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 180)\n\t\t\t{\n\t\t\t\tvalue.z = 180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 270)\n\t\t\t{\n\t\t\t\tvalue.z = 270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tdynamicSpeed=0.5;\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 360)\n\t\t\t{\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 50,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube LBU",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 45;\nvar dynamicSpeed = 0.5;\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle) - 2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(225) - 2;\n\t\t\t\tvalue.y = angleSin(225);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-45);\n\t\t\t\tonCompleteStep(180);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle, 1.414213562345) -1;\n\t\t\tvalue.x += angleCos(-curentAngle + 45) + 1;\n\t\t\tif(curentAngle > 270)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(270)-1;\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(225);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(135);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.z = angleCos(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 1.00000 1.00000"
+			},
+			"parent" : 55
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -180)\n\t\t\t{\n\t\t\t\tvalue.z = -180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -270)\n\t\t\t{\n\t\t\t\tvalue.z = -270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tdynamicSpeed=0.5;\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -360)\n\t\t\t{\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 52,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube RFU",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 135;\nvar dynamicSpeed = 0.5;\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle) + 2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-45) + 2;\n\t\t\t\tvalue.y = angleSin(-45);\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(225);\n\t\t\t\tonCompleteStep(0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle, 1.414213562345) +1;\n\t\t\tvalue.x += angleCos(curentAngle + 45) - 1;\n\t\t\tif(curentAngle < -90)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-90)+1;\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.z = angleCos(180 + curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.z = angleCos(225);\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 1.00000 -1.00000"
+			},
+			"parent" : 55
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 180)\n\t\t\t{\n\t\t\t\tvalue.z = 180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 270)\n\t\t\t{\n\t\t\t\tvalue.z = 270;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tdynamicSpeed=0.5;\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 360)\n\t\t\t{\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < 0)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 54,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube LFU",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 45;\nvar dynamicSpeed = 0.5;\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle)-2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(225)-2;\n\t\t\t\tvalue.y = angleSin(225);\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(225);\n\t\t\t\tonCompleteStep(180);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle, 1.414213562345) -1;\n\t\t\tvalue.x += angleCos(-curentAngle + 45) + 1;\n\t\t\tif(curentAngle > 270)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(270)-1;\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(225);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(135);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.z = angleCos(180 - curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.z = angleCos(225);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 1.00000 -1.00000"
+			},
+			"parent" : 55
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -90)\n\t\t\t{\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.y > 180)\n\t\t\t{\n\t\t\t\tvalue.y = 180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -180)\n\t\t\t{\n\t\t\t\tvalue.z = -180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 180)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 46,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube RBB",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 135;\nvar dynamicSpeed = 0.5;\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.x = angleCos(-45);\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle) + 2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-45) + 2;\n\t\t\t\tvalue.y = angleSin(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-45);\n\t\t\t\tonCompleteStep(0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle, 1.414213562345) +1;\n\t\t\tvalue.z += angleCos(curentAngle + 45) - 1;\n\t\t\tif(curentAngle < -90)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-90)+1;\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 -1.00000 1.00000"
+			},
+			"parent" : 55
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 90)\n\t\t\t{\n\t\t\t\tvalue.x = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 90)\n\t\t\t{\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.y < -180)\n\t\t\t{\n\t\t\t\tvalue.y = -180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 180)\n\t\t\t{\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x > 180)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 48,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube LBB",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 135;\nvar dynamicSpeed = 0.5;\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.x = angleCos(-curentAngle - 180);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.x = angleCos(-135);\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle) + 2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-45) + 2;\n\t\t\t\tvalue.y = angleSin(-45);\n\t\t\t\tonCompleteStep(225);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(135);\n\t\t\t\tonCompleteStep(0);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle, 1.414213562345) +1;\n\t\t\tvalue.z += angleCos(curentAngle + 45) - 1;\n\t\t\tif(curentAngle < -90)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(-90)+1;\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 -1.00000 1.00000"
+			},
+			"parent" : 55
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -90)\n\t\t\t{\n\t\t\t\tvalue.z = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.y -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.y < -180)\n\t\t\t{\n\t\t\t\tvalue.y = -180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z < -180)\n\t\t\t{\n\t\t\t\tvalue.z = -180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < -180)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 51,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube RFB",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 135;\nvar dynamicSpeed = 0.5;\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(225);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.x = angleCos(-45);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle) - 2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(225) - 2;\n\t\t\t\tvalue.y = angleSin(225);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(-45);\n\t\t\t\tonCompleteStep(180);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle, 1.414213562345) -1;\n\t\t\tvalue.z += angleCos(curentAngle - 45) + 1;\n\t\t\tif(curentAngle > 270)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(270)-1;\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "1.00000 -1.00000 -1.00000"
+			},
+			"parent" : 55
+		},
+		{
+			"angles" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1;\nvar dynamicSpeed = 0.5;\n\nexport function update(value)\n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tonCompleteStep();\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < -90)\n\t\t\t{\n\t\t\t\tvalue.x = -90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 90)\n\t\t\t{\n\t\t\t\tvalue.z = 90;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tvalue.y += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.y > 180)\n\t\t\t{\n\t\t\t\tvalue.y = 180;\n\t\t\t\tshared.value;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tvalue.z += (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.z > 180)\n\t\t\t{\n\t\t\t\tvalue.z = 180;\n\t\t\t\tonCompleteStep();\n\t\t\t}\t\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tvalue.x -= (scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(value.x < -180)\n\t\t\t{\n\t\t\t\tvalue.x = 0;\n\t\t\t\tvalue.y = 0;\n\t\t\t\tvalue.z = 0;\n\t\t\t\tonCompleteStep();\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction onCompleteStep()\n{\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"id" : 47,
+			"model" : "models/untitled2/untitled2.mdl",
+			"name" : "Cube LFB",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\nexport var scriptProperties = createScriptProperties()\n\t.addSlider({\n\t\tname: 'GlobalSpeed',\n\t\tlabel: 'globalspeed',\n\t\tvalue: 3,\n\t\tmin: 0,\n\t\tmax: 10,\n\t\tinteger: false\n\t})\n\t.finish();\n\nvar step = 0;\nvar completedStep = -1; \nvar curentAngle = 135;\nvar dynamicSpeed = 0.5;\n\nexport function update(value) \n{\n\tstep=shared;\n\tif(step == completedStep)\n\t\treturn value;\n\t\n\tswitch (step) \n\t{\n\t\tcase 0:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 1:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(225);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 2:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.y = angleSin(-curentAngle + 45, 1.414213562345) -1;\n\t\t\tvalue.x = angleCos(-curentAngle - 180);\n\t\t\tif(curentAngle < -45)\n\t\t\t{\n\t\t\t\tvalue.y = angleSin(90,1.414213562345 * 2)-3;\n\t\t\t\tvalue.x = angleCos(-135);\n\t\t\t\tonCompleteStep(45);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 3:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle) - 2;\n\t\t\tvalue.y = angleSin(curentAngle);\n\t\t\tif(curentAngle > 225)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(225) - 2;\n\t\t\t\tvalue.y = angleSin(225);\n\t\t\t\tonCompleteStep(225);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 4:\n\t\t\tcurentAngle-=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.x = angleCos(curentAngle);\n\t\t\tif(curentAngle < 135)\n\t\t\t{\n\t\t\t\tvalue.x = angleCos(135);\n\t\t\t\tonCompleteStep(180);\n\t\t\t}\n\t\t\tbreak;\n\t\tcase 5:\n\t\t\tcurentAngle+=(scriptProperties.GlobalSpeed * dynamicSpeed);\n\t\t\tvalue.z = angleCos(curentAngle, 1.414213562345) -1;\n\t\t\tvalue.z += angleCos(curentAngle - 45) + 1;\n\t\t\tif(curentAngle > 270)\n\t\t\t{\n\t\t\t\tvalue.z = angleCos(270)-1;\n\t\t\t\tonCompleteStep(135);\n\t\t\t}\n\t\t\tbreak;\n\t}\n\tdynamicSpeed+=0.5;\n\treturn value;\n}\n\nfunction angleCos(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.cos(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\nfunction angleSin(angle, modifer)\n{\n\tif(modifer == null)\n\t\tmodifer = 1;\n\treturn (Math.sin(angle * (Math.PI / 180)) * (1.4142135624 * modifer));\n}\n\nfunction onCompleteStep(newAngle)\n{\n\tcurentAngle = newAngle;\n\tcompletedStep=step;\n\tdynamicSpeed=0.5;\n}",
+				"scriptproperties" : 
+				{
+					"GlobalSpeed" : 
+					{
+						"user" : "globalspeed",
+						"value" : 3
+					}
+				},
+				"value" : "-1.00000 -1.00000 -1.00000"
+			},
+			"parent" : 55
+		}
+	],
+	"version" : 4
+}

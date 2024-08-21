@@ -1,0 +1,10 @@
+{
+	"passes" : 
+	[
+		{
+			"combos" : {},
+			"shader" : "generic4",
+			"textures" : [ "models/untitled2/templategrid_albedo" ]
+		}
+	]
+}

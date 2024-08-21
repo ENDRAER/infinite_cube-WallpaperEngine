@@ -1,0 +1,23 @@
+{
+	"passes" : 
+	[
+		{
+			"alphawriting" : "default",
+			"blending" : "normal",
+			"combos" : 
+			{
+				"SHADINGGRADIENT" : 0
+			},
+			"constantshadervalues" : 
+			{
+				"Alpha" : 1,
+				"Color" : "1.00000 1.00000 1.00000"
+			},
+			"cullmode" : "normal",
+			"depthtest" : "enabled",
+			"depthwrite" : "enabled",
+			"shader" : "generic4",
+			"textures" : [ "Cube" ]
+		}
+	]
+}

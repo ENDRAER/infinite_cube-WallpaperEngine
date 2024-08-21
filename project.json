@@ -1,0 +1,83 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "",
+	"file" : "scene.json",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"backgroundcolor" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "Background color",
+				"type" : "color",
+				"value" : "0.10588235294117647 0.12156862745098039 0.20784313725490197"
+			},
+			"globalspeed" : 
+			{
+				"condition" : "",
+				"fraction" : false,
+				"index" : 1,
+				"max" : 100,
+				"min" : 0,
+				"order" : 101,
+				"text" : "Speed",
+				"type" : "slider",
+				"value" : 20
+			},
+			"newproperty" : 
+			{
+				"index" : 4,
+				"order" : 104,
+				"text" : "New Property",
+				"type" : "scenetexture",
+				"value" : ""
+			},
+			"schemecolor" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0.14901960784313725 0.16470588235294117 0.23137254901960785"
+			},
+			"spinningspeed" : 
+			{
+				"fraction" : false,
+				"index" : 2,
+				"max" : 500,
+				"min" : -500,
+				"order" : 102,
+				"text" : "Spinning speed",
+				"type" : "slider",
+				"value" : 10
+			},
+			"zoom" : 
+			{
+				"fraction" : true,
+				"index" : 3,
+				"max" : 170,
+				"min" : 5,
+				"order" : 103,
+				"precision" : 2,
+				"step" : 0.1,
+				"text" : "POV",
+				"type" : "slider",
+				"value" : 50
+			}
+		}
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"snapshotformat" : 2,
+	"snapshotoverlay" : "",
+	"tags" : [ "Relaxing" ],
+	"title" : "Infinity Cube (OC)",
+	"type" : "scene",
+	"version" : 2,
+	"visibility" : "public",
+	"workshopid" : "3312932213",
+	"workshopurl" : "steam://url/CommunityFilePage/3312932213"
+}
